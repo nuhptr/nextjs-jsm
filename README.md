@@ -1,5 +1,7 @@
 # JSM LSM | Next.js Learn Management System
 
+<!-- Foto Section -->
+
 ## Getting Started
 
 First thing to do when create this project.
