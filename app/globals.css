@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 @tailwind variants;
 
 * {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -38,11 +38,11 @@
   }
 
   .heading1 {
-    @apply text-[64px] leading-[67.2px] font-bold;
+    @apply text-[64px] leading-tight font-bold;
   }
 
   .heading2 {
-    @apply font-bold text-[48px] leading-[50.4px];
+    @apply font-bold text-[48px] leading-tight;
   }
 
   .heading3 {
@@ -98,7 +98,7 @@
   }
 
   .paddings {
-    @apply sm:p-16 xs:p-8 px-6 py-12;
+    @apply xs:p-8 sm:p-16 px-6 py-12;
   }
 
   .y-paddings {
