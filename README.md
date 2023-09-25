@@ -5,8 +5,8 @@
 First thing to do when create this project.
 
 - [shadcn/ui](https://ui.shadcn.com/docs/installation/next)
-  `typescript npx create-next-app@latest my-app --typescript --tailwind --eslint `
-  `typescript npx shadcn-ui@latest init `
+  - `typescript npx create-next-app@latest my-app --typescript --tailwind --eslint `
+  - `typescript npx shadcn-ui@latest init `
 
 ## Learn More
 
