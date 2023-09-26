@@ -40,9 +40,7 @@ const schema = {
       title: 'Category',
       type: 'string',
       validation: (Rule: any) => Rule.required(),
-      options: {
-        list: ['frontend', 'backend', 'next13', 'fullstack', 'other'],
-      },
+      options: { list: ['frontend', 'backend', 'next13', 'fullstack', 'other'] },
     },
   ],
 }
