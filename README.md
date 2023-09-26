@@ -16,6 +16,10 @@ First thing to do when create this project.
 - [lucide-react] - npm install lucide-react
 - [tailwind-merge] - npm install tailwind-merge
 - [tailwindcss-animate] - npm install tailwindcss-animate
+- [sanity](https://www.sanity.io/docs/cli)
+  - `npm install --global sanity@latest`
+  - `sanity login`
+  - `npm create sanity@latest`
 
 ## Learn More
 
