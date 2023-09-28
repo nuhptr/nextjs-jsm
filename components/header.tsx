@@ -26,5 +26,5 @@ export default function Header({ query, category }: IHeaderProps) {
     )
   }
 
-  return <h1 className='heading3 self-start text-white-800'>No Results</h1>
+  return <h1 className='heading3 self-start text-white-800'>{category || 'All Resources'}</h1>
 }
