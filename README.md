@@ -20,6 +20,7 @@ First thing to do when create this project.
   - `npm install --global sanity@latest`
   - `sanity login`
   - `npm create sanity@latest`
+- [query-string](https://www.npmjs.com/package/query-string) - npm install query-string
 
 ## Learn More
 
