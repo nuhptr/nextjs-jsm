@@ -1,7 +1,10 @@
 'use client'
 
-import { useState } from 'react'
 import clsx from 'clsx'
+import { useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+
+import { formUrlQuery } from '@/sanity/utils'
 
 const links = [
   { id: 1, name: 'All', href: '/filters' },
@@ -13,14 +16,31 @@ const links = [
 ]
 
 export default function Filters() {
-  const [active, setActive] = useState('')
+  const searchParams = useSearchParams()
+  const router = useRouter()
+
+  const [active, setActive] = useState<string>('')
 
   const handleFilter = (linkName: string) => {
-    setActive(linkName)
+    let newUrl = ''
+
+    if (active === linkName) {
+      setActive('')
+      newUrl = formUrlQuery({ params: searchParams.toString(), keysToRemove: ['category'] })
+    } else {
+      setActive(linkName)
+      newUrl = formUrlQuery({
+        params: searchParams.toString(),
+        key: 'category',
+        value: linkName.toLowerCase(),
+      })
+    }
+
+    router.push(newUrl, { scroll: false })
   }
 
   return (
-    <ul className='text-white-800 body-text no-scrollbar flex w-full max-w-full gap-2 overflow-auto py-12 sm:max-w-2xl'>
+    <ul className='text-white-800 body-text no-scrollbar flex justify-center w-full max-w-full gap-2 overflow-auto mt-8 sm:max-w-4xl'>
       {links.map((link) => (
         <button
           key={link.id}
