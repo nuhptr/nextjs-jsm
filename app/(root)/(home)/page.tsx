@@ -1,12 +1,28 @@
-import { getResources } from '@/sanity/actions'
+import { getResources, getResourcesPlaylist } from '@/sanity/actions'
 
 import SearchForm from '@/components/search-form'
 import Filters from '@/components/filters'
 import ResourceCard from '@/components/resource-card'
+import Header from '@/components/header'
 
-export default async function Page() {
-  const resources = await getResources({ query: '', category: '', page: '1' })
-  console.log(resources)
+// like ctrl+shift+r in chrome
+export const revalidate = 900
+
+interface IPageProps {
+  searchParams: { [key: string]: string | undefined }
+}
+
+export default async function Page({ searchParams }: IPageProps) {
+  console.log(searchParams)
+
+  const resources = await getResources({
+    query: searchParams?.query || '',
+    category: searchParams?.category || '',
+    page: '1',
+  })
+
+  const resourcesPlaylist = await getResourcesPlaylist()
+  console.log(resourcesPlaylist)
 
   return (
     <main className='flex-center paddings mx-auto w-full max-w-screen-2xl flex-col'>
@@ -22,17 +38,18 @@ export default async function Page() {
       <Filters />
 
       <section className='flex-center mt-6 w-full flex-col sm:mt-20'>
-        Header
+        <Header query={searchParams?.query || ''} category={searchParams?.category || ''} />
+
         <div className='mt-12 flex w-full flex-wrap justify-center gap-16 sm:justify-start'>
           {resources?.length > 0 ? (
             resources.map((resource: any) => (
               <ResourceCard
                 key={resource._id}
-                title={resource.title}
                 id={resource._id}
+                title={resource.title}
                 image={resource.image}
+                downloadLink={resource.downloadLink}
                 downloadNumber={resource.views}
-                slug={resource._id}
               />
             ))
           ) : (
@@ -42,6 +59,24 @@ export default async function Page() {
           )}
         </div>
       </section>
+
+      {resourcesPlaylist.map((item: any) => (
+        <section key={item._id} className='flex-center mt-6 w-full flex-col sm:mt-20'>
+          <h1 className='heading3 self-start text-white-800'>{item.title}</h1>
+          <div className='mt-12 flex w-full flex-wrap justify-center gap-16 sm:justify-start'>
+            {item.resources.map((resource: any) => (
+              <ResourceCard
+                key={resource._id}
+                title={resource.title}
+                id={resource._id}
+                image={resource.image}
+                downloadNumber={resource.views}
+                downloadLink={resource.downloadLink || ''}
+              />
+            ))}
+          </div>
+        </section>
+      ))}
     </main>
   )
 }
