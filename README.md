@@ -1,6 +1,6 @@
 # JSM LSM | Next.js Learn Management System
 
-<!-- Foto Section -->
+![TSM Images](https://github.com/nuhptr/nextjs-tsm/assets/50306963/7080c205-d417-43f3-9c5d-3a54f5e57731)
 
 ## Getting Started
 
