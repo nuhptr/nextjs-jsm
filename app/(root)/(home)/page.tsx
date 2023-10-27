@@ -2,6 +2,7 @@ import Filters from "@/components/Filters"
 import Header from "@/components/Header"
 import ResourceCard from "@/components/ResourceCard"
 import SearchForm from "@/components/SearchForm"
+
 import { getResources, getResourcesPlaylist } from "@/sanity/actions"
 
 export const revalidate = 900
