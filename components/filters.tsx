@@ -1,38 +1,33 @@
 "use client"
 
-import clsx from "clsx"
-import { useState } from "react"
-import { useRouter, useSearchParams } from "next/navigation"
-
 import { formUrlQuery } from "@/sanity/utils"
+import { useState } from "react"
+import { useSearchParams, useRouter } from "next/navigation"
 
-const links = [
-   { id: 1, name: "All", href: "/filters" },
-   { id: 2, name: "Next 13", href: "/next13" },
-   { id: 3, name: "Typescript", href: "/typescript" },
-   { id: 4, name: "Frontend", href: "/frontend" },
-   { id: 5, name: "Backend", href: "/backend" },
-   { id: 6, name: "Fullstack", href: "/fullstack" },
-]
+const links = ["all", "Next 13", "frontend", "backend", "fullstack"]
 
-export default function Filters() {
-   const searchParams = useSearchParams()
+const Filters = () => {
+   const [active, setActive] = useState("")
+   const searchParms = useSearchParams()
    const router = useRouter()
 
-   const [active, setActive] = useState<string>("")
-
-   const handleFilter = (linkName: string) => {
+   const handleFilter = (link: string) => {
       let newUrl = ""
 
-      if (active === linkName) {
+      if (active === link) {
          setActive("")
-         newUrl = formUrlQuery({ params: searchParams.toString(), keysToRemove: ["category"] })
-      } else {
-         setActive(linkName)
+
          newUrl = formUrlQuery({
-            params: searchParams.toString(),
+            params: searchParms.toString(),
+            keysToRemove: ["category"],
+         })
+      } else {
+         setActive(link)
+
+         newUrl = formUrlQuery({
+            params: searchParms.toString(),
             key: "category",
-            value: linkName.toLowerCase(),
+            value: link.toLowerCase(),
          })
       }
 
@@ -40,18 +35,19 @@ export default function Filters() {
    }
 
    return (
-      <ul className="text-white-800 body-text no-scrollbar flex justify-center w-full max-w-full gap-2 overflow-auto mt-8 sm:max-w-4xl">
+      <ul className="text-white-800 body-text no-scrollbar flex w-full max-w-full gap-2 overflow-auto py-12 sm:max-w-2xl">
          {links.map((link) => (
             <button
-               key={link.id}
-               onClick={() => handleFilter(link.name)}
-               className={clsx(
-                  "whitespace-nowrap rounded-full px-8 py-3.5 capitalize",
-                  active === link.name ? "gradient_blue-purple" : ""
-               )}>
-               {link.name}
+               key={link}
+               onClick={() => handleFilter(link)}
+               className={`${
+                  active === link ? "gradient_blue-purple" : ""
+               } whitespace-nowrap rounded-lg px-8 py-2.5 capitalize`}>
+               {link}
             </button>
          ))}
       </ul>
    )
 }
+
+export default Filters

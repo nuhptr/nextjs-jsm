@@ -1,10 +1,8 @@
-import type { Config } from "tailwindcss"
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
    darkMode: ["class"],
    content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
    theme: {
-      // custom
       screens: {
          xs: "400px",
          sm: "640px",
@@ -18,16 +16,14 @@ const config: Config = {
          center: true,
          padding: "2rem",
          screens: {
-            "2xl": "1440px",
+            "2xl": "1400px",
          },
       },
       extend: {
-         // add
          fontFamily: {
             poppins: ["Poppins", "sans-serif"],
             inter: ["Inter", "sans-serif"],
          },
-         // custom
          colors: {
             primary: "#2190FF",
             black: {
@@ -52,25 +48,17 @@ const config: Config = {
             violet: "#F16565",
             orange: "#FF964B",
          },
-         borderRadius: {
-            lg: "var(--radius)",
-            md: "calc(var(--radius) - 2px)",
-            sm: "calc(var(--radius) - 4px)",
-         },
-         // add
          backgroundImage: {
             banner: "url('/jsm_resources_banner.svg')",
          },
          keyframes: {
             "accordion-down": {
-               // edited
-               from: { height: "0" },
+               from: { height: 0 },
                to: { height: "var(--radix-accordion-content-height)" },
             },
             "accordion-up": {
                from: { height: "var(--radix-accordion-content-height)" },
-               // edited
-               to: { height: "0" },
+               to: { height: 0 },
             },
          },
          animation: {
@@ -81,4 +69,3 @@ const config: Config = {
    },
    plugins: [require("tailwindcss-animate")],
 }
-export default config
