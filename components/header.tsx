@@ -1,30 +1,28 @@
 interface IHeaderProps {
-  query: string
-  category: string
+   query: string
+   category: string
 }
 
 export default function Header({ query, category }: IHeaderProps) {
-  if (query && category) {
-    return (
-      <h1 className='heading3 self-start text-white-800'>
-        Search results for &quot;{query}&quot; in <span className='capitalize'>{category}</span>
-      </h1>
-    )
-  }
+   if (query && category) {
+      return (
+         <h1 className="heading3 self-start text-white-800">
+            Search results for &quot;{query}&quot; in <span className="capitalize">{category}</span>
+         </h1>
+      )
+   }
 
-  if (query) {
-    return (
-      <h1 className='heading3 self-start text-white-800'>Search results for &quot;{query}&quot;</h1>
-    )
-  }
+   if (query) {
+      return <h1 className="heading3 self-start text-white-800">Search results for &quot;{query}&quot;</h1>
+   }
 
-  if (category) {
-    return (
-      <h1 className='heading3 self-start text-white-800'>
-        <span className='capitalize'>{category}</span>
-      </h1>
-    )
-  }
+   if (category) {
+      return (
+         <h1 className="heading3 self-start text-white-800">
+            <span className="capitalize">{category}</span>
+         </h1>
+      )
+   }
 
-  return <h1 className='heading3 self-start text-white-800'>{category || 'All Resources'}</h1>
+   return <h1 className="heading3 self-start text-white-800">{category || "All Resources"}</h1>
 }

@@ -1,52 +1,52 @@
-import qs from 'query-string'
+import qs from "query-string"
 
 interface BuildQueryParams {
-  type: string
-  query: string
-  category: string
-  page: number
-  perPage?: number
+   type: string
+   query: string
+   category: string
+   page: number
+   perPage?: number
 }
 
 // Build query for Sanity
 export function buildQuery(params: BuildQueryParams) {
-  const { type, query, category, page = 1, perPage = 20 } = params
+   const { type, query, category, page = 1, perPage = 20 } = params
 
-  const conditions = [`*[_type=="${type}"`]
+   const conditions = [`*[_type=="${type}"`]
 
-  if (query) conditions.push(`title match "*${query}*"`)
+   if (query) conditions.push(`title match "*${query}*"`)
 
-  if (category && category !== 'all') {
-    conditions.push(`category == "${category}"`)
-  }
+   if (category && category !== "all") {
+      conditions.push(`category == "${category}"`)
+   }
 
-  // Calculate pagination limits
-  const offset = (page - 1) * perPage
-  const limit = perPage
+   // Calculate pagination limits
+   const offset = (page - 1) * perPage
+   const limit = perPage
 
-  return conditions.length > 1
-    ? `${conditions[0]} && (${conditions.slice(1).join(' && ')})][${offset}...${limit}]`
-    : `${conditions[0]}][${offset}...${limit}]`
+   return conditions.length > 1
+      ? `${conditions[0]} && (${conditions.slice(1).join(" && ")})][${offset}...${limit}]`
+      : `${conditions[0]}][${offset}...${limit}]`
 }
 
 interface UrlQueryParams {
-  params: string
-  key?: string
-  value?: string | null
-  keysToRemove?: string[]
+   params: string
+   key?: string
+   value?: string | null
+   keysToRemove?: string[]
 }
 
 // Form url query for search and filter
 export function formUrlQuery({ params, key, value, keysToRemove }: UrlQueryParams) {
-  const currentUrl = qs.parse(params)
+   const currentUrl = qs.parse(params)
 
-  if (keysToRemove) {
-    keysToRemove.forEach((key) => {
-      delete currentUrl[key]
-    })
-  } else if (key && value) {
-    currentUrl[key] = value
-  }
+   if (keysToRemove) {
+      keysToRemove.forEach((key) => {
+         delete currentUrl[key]
+      })
+   } else if (key && value) {
+      currentUrl[key] = value
+   }
 
-  return qs.stringifyUrl({ url: window.location.pathname, query: currentUrl }, { skipNull: true })
+   return qs.stringifyUrl({ url: window.location.pathname, query: currentUrl }, { skipNull: true })
 }
