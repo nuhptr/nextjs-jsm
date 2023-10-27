@@ -1,7 +1,7 @@
-import Filters from "@/components/Filters"
-import Header from "@/components/Header"
-import ResourceCard from "@/components/ResourceCard"
-import SearchForm from "@/components/SearchForm"
+import Filters from "@/components/filter"
+import Header from "@/components/header"
+import ResourceCard from "@/components/resources-card"
+import SearchForm from "@/components/search-form"
 
 import { getResources, getResourcesPlaylist } from "@/sanity/actions"
 
